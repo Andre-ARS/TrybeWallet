@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addEmail } from '../actions';
+import './Login.css';
 
 const MIN_PASSWORD_CHAR = 6;
 const EMAIL_REGEX = /\S+@\S+\.\S+/;
@@ -42,29 +43,31 @@ class Login extends Component {
     const { state: { email, password, isDisabled }, handleChange, handleSubmit } = this;
 
     return (
-      <form>
-        <input
-          type="text"
-          data-testid="email-input"
-          name="email"
-          value={ email }
-          onChange={ handleChange }
-        />
-        <input
-          type="password"
-          data-testid="password-input"
-          name="password"
-          value={ password }
-          onChange={ handleChange }
-        />
-        <button
-          type="submit"
-          disabled={ isDisabled }
-          onClick={ handleSubmit }
-        >
-          Entrar
-        </button>
-      </form>
+      <div className="form-container">
+        <form>
+          <input
+            type="text"
+            data-testid="email-input"
+            name="email"
+            value={ email }
+            onChange={ handleChange }
+          />
+          <input
+            type="password"
+            data-testid="password-input"
+            name="password"
+            value={ password }
+            onChange={ handleChange }
+          />
+          <button
+            type="submit"
+            disabled={ isDisabled }
+            onClick={ handleSubmit }
+          >
+            Entrar
+          </button>
+        </form>
+      </div>
     );
   }
 }
