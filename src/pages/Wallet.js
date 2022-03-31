@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchCurrencies } from '../actions';
+import ExpensesForm from '../components/ExpensesForm';
 
 class Wallet extends Component {
   componentDidMount() {
@@ -11,10 +12,10 @@ class Wallet extends Component {
   }
 
   render() {
-    const { email } = this.props;
+    const { email, currencies } = this.props;
 
     return (
-      <main>
+      <div>
         <header>
           <h1>trybeWallet</h1>
           <p data-testid="email-field">{ email }</p>
@@ -23,12 +24,16 @@ class Wallet extends Component {
             <span data-testid="header-currency-field">BRL</span>
           </span>
         </header>
-      </main>
+        <ExpensesForm currencies={ currencies } />
+      </div>
     );
   }
 }
 
-const mapStateToProps = ({ user }) => ({ email: user.email });
+const mapStateToProps = ({ user, wallet }) => ({
+  email: user.email,
+  currencies: wallet.currencies,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   fetchAcronym: () => dispatch(fetchCurrencies()),

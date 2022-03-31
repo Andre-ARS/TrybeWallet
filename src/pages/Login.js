@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addEmail } from '../actions';
-import './Login.css';
+// import './Login.css';
 
 const MIN_PASSWORD_CHAR = 6;
 const EMAIL_REGEX = /\S+@\S+\.\S+/;
