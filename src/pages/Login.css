@@ -13,13 +13,48 @@
   width: 100%;
 }
 
-form {
+.form {
   align-items: center;
+  background-color: rgb(235, 246, 252);
   border-radius: 15px;
   box-shadow: black -5px 2px 15px;
   display: flex;
   flex-direction: column;
-  height: 40%;
   justify-content: center;
-  width: 20%;
+  padding: 15px 20px;
+}
+
+.logo {
+  width: 300px;
+}
+
+.input {
+  border: none;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  padding: 15px 10px;
+  width: 270px;
+}
+
+.input:focus {
+  outline: green solid 3px;
+}
+
+.login-button {
+  background-color: blue;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  font-size: 24px;
+  padding: 10px;
+  width: 270px;
+}
+
+.login-button:hover {
+  background-color: rgb(53, 151, 243);
+}
+
+.login-button:disabled {
+  background-color: rgb(43, 43, 90);
+  color: rgb(102, 114, 165);
 }

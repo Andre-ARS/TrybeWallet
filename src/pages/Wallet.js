@@ -1,30 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchCurrencies } from '../actions';
+import { fetchCurrencies, getCurrencies } from '../actions';
 import ExpensesForm from '../components/ExpensesForm';
+import Header from '../components/Header';
 
 class Wallet extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: 0,
+    };
+  }
+
   componentDidMount() {
     const { fetchAcronym } = this.props;
 
-    fetchAcronym();
+    fetchAcronym(getCurrencies);
   }
 
   render() {
-    const { email, currencies } = this.props;
+    const { email, total } = this.props;
 
     return (
       <div>
-        <header>
-          <h1>trybeWallet</h1>
-          <p data-testid="email-field">{ email }</p>
-          <span data-testid="total-field">
-            0
-            <span data-testid="header-currency-field">BRL</span>
-          </span>
-        </header>
-        <ExpensesForm currencies={ currencies } />
+        <Header email={ email } total={ total } />
+        <ExpensesForm />
       </div>
     );
   }
@@ -32,11 +34,12 @@ class Wallet extends Component {
 
 const mapStateToProps = ({ user, wallet }) => ({
   email: user.email,
-  currencies: wallet.currencies,
+  expenses: wallet.expenses,
+  total: wallet.total,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchAcronym: () => dispatch(fetchCurrencies()),
+  fetchAcronym: (callBack) => dispatch(fetchCurrencies(callBack)),
 });
 
 Wallet.propTypes = {

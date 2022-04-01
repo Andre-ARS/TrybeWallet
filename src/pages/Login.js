@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addEmail } from '../actions';
-// import './Login.css';
+import Logo from '../images/money-logo-green.png';
+import './Login.css';
 
 const MIN_PASSWORD_CHAR = 6;
 const EMAIL_REGEX = /\S+@\S+\.\S+/;
@@ -44,13 +45,16 @@ class Login extends Component {
 
     return (
       <div className="form-container">
-        <form>
+        <form className="form">
+          <img src={ Logo } alt="" className="logo" />
           <input
             type="text"
             data-testid="email-input"
             name="email"
             value={ email }
             onChange={ handleChange }
+            className="input"
+            placeholder="Digite o seu E-mail"
           />
           <input
             type="password"
@@ -58,11 +62,14 @@ class Login extends Component {
             name="password"
             value={ password }
             onChange={ handleChange }
+            className="input"
+            placeholder="Digite sua Senha"
           />
           <button
             type="submit"
             disabled={ isDisabled }
             onClick={ handleSubmit }
+            className="login-button"
           >
             Entrar
           </button>

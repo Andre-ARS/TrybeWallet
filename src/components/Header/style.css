@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+}
+
+.header-container div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.header-logo {
+  width: 80px;
+}
