@@ -6,14 +6,6 @@ import ExpensesForm from '../components/ExpensesForm';
 import Header from '../components/Header';
 
 class Wallet extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: 0,
-    };
-  }
-
   componentDidMount() {
     const { fetchAcronym } = this.props;
 

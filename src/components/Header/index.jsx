@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes, { object } from 'prop-types';
 import Logo from '../../images/money-logo.png';
 import './style.css';
-import { connect } from 'react-redux';
 
 class Header extends Component {
   render() {
@@ -13,15 +12,15 @@ class Header extends Component {
         <img src={ Logo } alt="" className="header-logo" />
         <div>
           <p data-testid="email-field">{ email }</p>
-          <span data-testid="total-field">{ total }</span>
+          <span data-testid="total-field">
+            { total > 0 ? total : 0 }
+          </span>
           <span data-testid="header-currency-field">BRL</span>
         </div>
       </header>
     );
   }
 }
-
-const mapStateToProps = ({ wallet }) => ({ total: wallet.total })
 
 Header.propTypes = {
   email: PropTypes.string,
