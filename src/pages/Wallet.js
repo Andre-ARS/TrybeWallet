@@ -4,17 +4,8 @@ import PropTypes from 'prop-types';
 import { fetchCurrencies, getCurrencies } from '../actions';
 import ExpensesForm from '../components/ExpensesForm';
 import Header from '../components/Header';
+import ExpensesTable from '../components/ExpensesTable';
 
-const TABLE_HEADERS = [
-  'Descrição',
-  'Tag',
-  'Método de pagamento',
-  'Valor',
-  'Moeda',
-  'Câmbio utilizado',
-  'Valor convertido',
-  'Moeda de conversão',
-  'Editar/Excluir'];
 class Wallet extends Component {
   componentDidMount() {
     const { fetchAcronym } = this.props;
@@ -22,28 +13,14 @@ class Wallet extends Component {
     fetchAcronym(getCurrencies);
   }
 
-  renderTableHeader = () => TABLE_HEADERS
-    .map((header) => <th key={ header }>{ header }</th>)
-
   render() {
-    const { email, total } = this.props;
+    const { email, total, expenses } = this.props;
 
     return (
       <div>
         <Header email={ email } total={ total } />
         <ExpensesForm />
-        <table>
-          <thead>
-            <tr key="">
-              { this.renderTableHeader() }
-            </tr>
-          </thead>
-          <tbody>
-            <tr key="">
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+        <ExpensesTable expenses={ expenses } />
       </div>
     );
   }
