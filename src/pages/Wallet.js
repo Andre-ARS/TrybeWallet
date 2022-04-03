@@ -5,12 +5,25 @@ import { fetchCurrencies, getCurrencies } from '../actions';
 import ExpensesForm from '../components/ExpensesForm';
 import Header from '../components/Header';
 
+const TABLE_HEADERS = [
+  'Descrição',
+  'Tag',
+  'Método de pagamento',
+  'Valor',
+  'Moeda',
+  'Câmbio utilizado',
+  'Valor convertido',
+  'Moeda de conversão',
+  'Editar/Excluir'];
 class Wallet extends Component {
   componentDidMount() {
     const { fetchAcronym } = this.props;
 
     fetchAcronym(getCurrencies);
   }
+
+  renderTableHeader = () => TABLE_HEADERS
+    .map((header) => <th key={ header }>{ header }</th>)
 
   render() {
     const { email, total } = this.props;
@@ -19,6 +32,18 @@ class Wallet extends Component {
       <div>
         <Header email={ email } total={ total } />
         <ExpensesForm />
+        <table>
+          <thead>
+            <tr key="">
+              { this.renderTableHeader() }
+            </tr>
+          </thead>
+          <tbody>
+            <tr key="">
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     );
   }
