@@ -1,4 +1,4 @@
-import { GET_CURRENCIES, STORE_EXPENSE } from '../actions';
+import { DEL_EXPENSE, GET_CURRENCIES, GET_TOTAL, STORE_EXPENSE } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [],
@@ -16,7 +16,7 @@ const sumTotal = (expenses) => {
   return total.toFixed(2);
 };
 
-const wallet = (state = INITIAL_STATE, { type, acronym, expense }) => {
+const wallet = (state = INITIAL_STATE, { type, acronym, expense, actionId }) => {
   switch (type) {
   case GET_CURRENCIES:
     return {
@@ -29,7 +29,17 @@ const wallet = (state = INITIAL_STATE, { type, acronym, expense }) => {
       expenses: [...state.expenses, expense],
       total: sumTotal([...state.expenses, expense]),
     };
-
+  case DEL_EXPENSE:
+    return {
+      ...state,
+      expenses: state.expenses.filter(({ id }) => id !== actionId),
+      total: sumTotal(state.expenses.filter(({ id }) => id !== actionId)),
+    };
+  case GET_TOTAL:
+    return {
+      ...state,
+      total: sumTotal(state.expenses),
+    };
   default:
     return state;
   }

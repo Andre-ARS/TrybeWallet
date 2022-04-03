@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchCurrencies, getCurrencies } from '../actions';
+import { fetchCurrencies, getCurrencies, getTotal } from '../actions';
 import ExpensesForm from '../components/ExpensesForm';
 import Header from '../components/Header';
 import ExpensesTable from '../components/ExpensesTable';
 
 class Wallet extends Component {
   componentDidMount() {
-    const { fetchAcronym } = this.props;
+    const { fetchAcronym, updateTotal } = this.props;
 
     fetchAcronym(getCurrencies);
+    updateTotal();
   }
 
   render() {
@@ -34,6 +35,7 @@ const mapStateToProps = ({ user, wallet }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchAcronym: (callBack) => dispatch(fetchCurrencies(callBack)),
+  updateTotal: () => dispatch(getTotal()),
 });
 
 Wallet.propTypes = {
