@@ -5,6 +5,7 @@ import { fetchCurrencies, getCurrencies, getTotal } from '../actions';
 import ExpensesForm from '../components/ExpensesForm';
 import Header from '../components/Header';
 import ExpensesTable from '../components/ExpensesTable';
+import EditForm from '../components/EditForm';
 
 class Wallet extends Component {
   componentDidMount() {
@@ -15,12 +16,12 @@ class Wallet extends Component {
   }
 
   render() {
-    const { email, total, expenses } = this.props;
+    const { email, total, expenses, editorMode } = this.props;
 
     return (
       <div>
         <Header email={ email } total={ total } />
-        <ExpensesForm />
+        { editorMode ? <EditForm /> : <ExpensesForm /> }
         <ExpensesTable expenses={ expenses } />
       </div>
     );
@@ -31,6 +32,7 @@ const mapStateToProps = ({ user, wallet }) => ({
   email: user.email,
   expenses: wallet.expenses,
   total: wallet.total,
+  editorMode: wallet.editorMode,
 });
 
 const mapDispatchToProps = (dispatch) => ({
