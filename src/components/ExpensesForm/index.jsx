@@ -1,7 +1,7 @@
 import PropTypes, { string } from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCurrencies, storeExpense } from '../../actions';
+import { fetchCurrencies, storeExpense, editExpense } from '../../actions';
 
 const METHODS_ARRAY = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
 const TAGS_ARRAY = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
@@ -21,6 +21,23 @@ class ExpensesForm extends Component {
     this.state = INITIAL_STATE;
   }
 
+  handleEditorMode = () => {
+    const { editorExpense: {
+      value, currency, method, tag, description, id } } = this.props;
+    const { id: stateId } = this.state;
+
+    if (id !== stateId) {
+      this.setState({
+        value,
+        currency,
+        method,
+        tag,
+        description,
+        id,
+      });
+    }
+  }
+
   handleChange = ({ target: { name, value } }) => {
     const { expenses } = this.props;
 
@@ -38,6 +55,14 @@ class ExpensesForm extends Component {
     return options;
   }
 
+  handleEdit = (event) => {
+    const { state, props: { editExpen } } = this;
+    event.preventDefault();
+
+    editExpen(state);
+    this.setState(INITIAL_STATE);
+  }
+
   handleSubmit = (event) => {
     const { state, props: { fetchAcronym } } = this;
     event.preventDefault();
@@ -48,14 +73,16 @@ class ExpensesForm extends Component {
 
   render() {
     const {
-      props: { currencies },
+      props: { currencies, editorMode },
       state: { value, currency, method, tag, description, id },
       handleChange,
       handleSubmit,
+      handleEdit,
     } = this;
 
     return (
       <form>
+        {/* { editorMode && this.handleEditorMode() } */}
         <label htmlFor="value">
           Valor:
           <input
@@ -74,6 +101,7 @@ class ExpensesForm extends Component {
             id="currencies"
             onChange={ handleChange }
             value={ currency }
+            data-testid="currency-input"
           >
             { this.mapOptions(currencies) }
           </select>
@@ -113,14 +141,25 @@ class ExpensesForm extends Component {
             value={ description }
           />
         </label>
-        <button
-          type="submit"
-          onClick={ handleSubmit }
-          id={ id }
-        >
-          Adicionar despesa
+        { editorMode
+          ? (
+            <button
+              type="submit"
+              onClick={ handleEdit }
+            >
+              Editar despesa
+            </button>
+          )
+          : (
+            <button
+              type="submit"
+              onClick={ handleSubmit }
+              id={ id }
+            >
+              Adicionar despesa
 
-        </button>
+            </button>
+          )}
       </form>
     );
   }
@@ -129,10 +168,14 @@ class ExpensesForm extends Component {
 const mapStateToProps = ({ wallet }) => ({
   currencies: wallet.currencies,
   expenses: wallet.expenses,
+  editorMode: wallet.editorMode,
+  editorId: wallet.editorId,
+  editorExpense: wallet.editorExpense,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchAcronym: (callBack, state) => dispatch(fetchCurrencies(callBack, state)),
+  editExpen: (state) => dispatch(editExpense(state)),
 });
 
 ExpensesForm.propTypes = {

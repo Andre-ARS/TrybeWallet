@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes, { object } from 'prop-types';
 import { connect } from 'react-redux';
-import { deleteExpense } from '../../actions';
+import { deleteExpense, editorMode } from '../../actions';
 
 const TABLE_HEADERS = [
   'Descrição',
@@ -14,6 +14,13 @@ const TABLE_HEADERS = [
   'Moeda de conversão',
   'Editar/Excluir'];
 class ExpensesTable extends Component {
+  handleEditorMode = (editorId) => {
+    const { expenses, editMode } = this.props;
+    const editorExpense = expenses
+      .filter(({ id }) => id === editorId);
+    editMode(editorId, editorExpense);
+  }
+
   renderTableHeader = () => TABLE_HEADERS
     .map((header) => <th key={ header }>{ header }</th>);
 
@@ -35,7 +42,11 @@ class ExpensesTable extends Component {
             <td>{ (ask * value).toFixed(2) }</td>
             <td>Real</td>
             <td>
-              <button type="button">
+              <button
+                type="button"
+                data-testid="edit-btn"
+                onClick={ () => this.handleEditorMode(id) }
+              >
                 Editar
               </button>
               <button
@@ -74,6 +85,7 @@ class ExpensesTable extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   delExpense: (id) => dispatch(deleteExpense(id)),
+  editMode: (id, expense) => dispatch(editorMode(id, expense)),
 });
 
 ExpensesTable.propTypes = {
