@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { addEmail } from '../actions';
 import Logo from '../images/money-logo-green.png';
 import './Login.css';
@@ -16,6 +17,7 @@ class Login extends Component {
       email: '',
       password: '',
       isDisabled: true,
+      passwordType: 'password',
     };
   }
 
@@ -41,7 +43,11 @@ class Login extends Component {
   }
 
   render() {
-    const { state: { email, password, isDisabled }, handleChange, handleSubmit } = this;
+    const { state: {
+      email,
+      password,
+      isDisabled,
+      passwordType }, handleChange, handleSubmit } = this;
 
     return (
       <div className="login-form-container">
@@ -56,15 +62,30 @@ class Login extends Component {
             className="input"
             placeholder="Digite o seu E-mail"
           />
-          <input
-            type="password"
-            data-testid="password-input"
-            name="password"
-            value={ password }
-            onChange={ handleChange }
-            className="input"
-            placeholder="Digite sua Senha"
-          />
+          <div>
+            <input
+              type={ passwordType }
+              data-testid="password-input"
+              name="password"
+              value={ password }
+              onChange={ handleChange }
+              className="input password"
+              placeholder="Digite sua Senha"
+            />
+            { passwordType === 'password'
+              ? (
+                <FaEye
+                  onClick={ () => this.setState({ passwordType: 'text' }) }
+                  className="eyes"
+                />
+              )
+              : (
+                <FaEyeSlash
+                  onClick={ () => this.setState({ passwordType: 'password' }) }
+                  className="eyes"
+                />
+              ) }
+          </div>
           <button
             type="submit"
             disabled={ isDisabled }

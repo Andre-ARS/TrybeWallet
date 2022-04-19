@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes, { object } from 'prop-types';
+import { BsTrashFill } from 'react-icons/bs';
+import { FaEdit } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { deleteExpense, editorMode } from '../../actions';
 import './style.css';
@@ -49,7 +51,7 @@ class ExpensesTable extends Component {
                 onClick={ () => this.handleEditorMode(id) }
                 className="edit"
               >
-                Editar
+                <FaEdit />
               </button>
               <button
                 type="button"
@@ -57,7 +59,7 @@ class ExpensesTable extends Component {
                 onClick={ () => delExpense(id) }
                 className="delet"
               >
-                Excluir
+                <BsTrashFill />
               </button>
             </td>
           </tr>

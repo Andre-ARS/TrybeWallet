@@ -20,7 +20,7 @@ class Header extends Component {
           >
             {
               total > 0
-                ? total
+                ? formatMoney(total)
                 : formatMoney(0)
             }
           </span>

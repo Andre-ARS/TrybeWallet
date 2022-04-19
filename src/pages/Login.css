@@ -24,6 +24,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 25px 20px;
+  position: relative;
 }
 
 .logo {
@@ -41,6 +42,18 @@
 
 .input:focus {
   outline: rgb(10, 133, 204) solid 3px;
+}
+
+.password {
+  position: relative;
+}
+
+.eyes {
+  color: rgb(19, 147, 185);
+  font-size: 20px;
+  position: absolute;
+  right: 45px;
+  top: 78%;
 }
 
 .login-button {
