@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes, { object } from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteExpense, editorMode } from '../../actions';
+import './style.css';
 
 const TABLE_HEADERS = [
   'Descrição',
@@ -46,6 +47,7 @@ class ExpensesTable extends Component {
                 type="button"
                 data-testid="edit-btn"
                 onClick={ () => this.handleEditorMode(id) }
+                className="edit"
               >
                 Editar
               </button>
@@ -53,6 +55,7 @@ class ExpensesTable extends Component {
                 type="button"
                 data-testid="delete-btn"
                 onClick={ () => delExpense(id) }
+                className="delet"
               >
                 Excluir
               </button>
@@ -66,8 +69,8 @@ class ExpensesTable extends Component {
 
   render() {
     return (
-      <div>
-        <table>
+      <div className="table-container">
+        <table cellSpacing="0" cellPadding="0">
           <thead>
             <tr key="">
               { this.renderTableHeader() }
@@ -77,7 +80,6 @@ class ExpensesTable extends Component {
             { this.renderTableBody() }
           </tbody>
         </table>
-
       </div>
     );
   }

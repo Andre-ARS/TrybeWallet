@@ -6,6 +6,7 @@ import ExpensesForm from '../components/ExpensesForm';
 import Header from '../components/Header';
 import ExpensesTable from '../components/ExpensesTable';
 import EditForm from '../components/EditForm';
+import './Wallet.css';
 
 class Wallet extends Component {
   componentDidMount() {
@@ -19,7 +20,7 @@ class Wallet extends Component {
     const { email, total, expenses, editorMode } = this.props;
 
     return (
-      <div>
+      <div className="wallet">
         <Header email={ email } total={ total } />
         { editorMode ? <EditForm /> : <ExpensesForm /> }
         <ExpensesTable expenses={ expenses } />

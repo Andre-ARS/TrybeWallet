@@ -42,73 +42,76 @@ class EditForm extends Component {
       handleEdit,
     } = this;
     return (
-      <form>
-        <label htmlFor="value">
-          Valor:
-          <input
-            type="number"
-            name="value"
-            id="value"
-            data-testid="value-input"
-            onChange={ handleChange }
-            value={ value }
-          />
-        </label>
-        <label htmlFor="currencies">
-          Moedas:
-          <select
-            name="currency"
-            id="currencies"
-            onChange={ handleChange }
-            value={ currency }
-            data-testid="currency-input"
+      <div className="wallet-form-container">
+        <form className="wallet-form">
+          <label htmlFor="value">
+            Valor:
+            <input
+              type="number"
+              name="value"
+              id="value"
+              data-testid="value-input"
+              onChange={ handleChange }
+              value={ value }
+            />
+          </label>
+          <label htmlFor="currencies">
+            Moedas:
+            <select
+              name="currency"
+              id="currencies"
+              onChange={ handleChange }
+              value={ currency }
+              data-testid="currency-input"
+            >
+              { this.mapOptions(currencies) }
+            </select>
+          </label>
+          <label htmlFor="method">
+            Método de Pagamento:
+            <select
+              name="method"
+              id="method"
+              data-testid="method-input"
+              onChange={ handleChange }
+              value={ method }
+            >
+              { this.mapOptions(METHODS_ARRAY) }
+            </select>
+          </label>
+          <label htmlFor="tag">
+            Categoria:
+            <select
+              name="tag"
+              id="tag"
+              data-testid="tag-input"
+              onChange={ handleChange }
+              value={ tag }
+            >
+              { this.mapOptions(TAGS_ARRAY) }
+            </select>
+          </label>
+          <label htmlFor="description">
+            Descrição:
+            <input
+              type="text"
+              name="description"
+              id="description"
+              data-testid="description-input"
+              onChange={ handleChange }
+              value={ description }
+            />
+          </label>
+          <button
+            type="submit"
+            onClick={ handleEdit }
+            id={ id }
+            className="submit-btn"
           >
-            { this.mapOptions(currencies) }
-          </select>
-        </label>
-        <label htmlFor="method">
-          Método de Pagamento:
-          <select
-            name="method"
-            id="method"
-            data-testid="method-input"
-            onChange={ handleChange }
-            value={ method }
-          >
-            { this.mapOptions(METHODS_ARRAY) }
-          </select>
-        </label>
-        <label htmlFor="tag">
-          Categoria:
-          <select
-            name="tag"
-            id="tag"
-            data-testid="tag-input"
-            onChange={ handleChange }
-            value={ tag }
-          >
-            { this.mapOptions(TAGS_ARRAY) }
-          </select>
-        </label>
-        <label htmlFor="description">
-          Descrição:
-          <input
-            type="text"
-            name="description"
-            id="description"
-            data-testid="description-input"
-            onChange={ handleChange }
-            value={ description }
-          />
-        </label>
-        <button
-          type="submit"
-          onClick={ handleEdit }
-          id={ id }
-        >
-          Editar despesa
-        </button>
-      </form>
+            Editar despesa
+          </button>
+        </form>
+      </div>
     );
   }
 }

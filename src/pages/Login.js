@@ -44,7 +44,7 @@ class Login extends Component {
     const { state: { email, password, isDisabled }, handleChange, handleSubmit } = this;
 
     return (
-      <div className="form-container">
+      <div className="login-form-container">
         <form className="form">
           <img src={ Logo } alt="" className="logo" />
           <input
