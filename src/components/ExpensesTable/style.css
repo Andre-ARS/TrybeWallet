@@ -1,0 +1,63 @@
+.table-container {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  max-height: 600px;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+
+.table-container tr {
+  background-color: rgb(217, 235, 238);
+}
+
+.table-container thead tr {
+  background-color: rgb(38, 73, 105);
+  color: white;
+}
+
+.table-container tr:nth-child( even ) {
+  background-color: rgb(59, 121, 121);
+  color: white;
+}
+
+.table-container th , td {
+  border-bottom: 1px solid rgb(192, 191, 191);
+  padding: 15px;
+  text-align: center;
+  width: 400px;
+}
+
+.table-container button {
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 3px;
+  padding: 5px;
+}
+
+.table-container .edit {
+  background-color: rgb(157, 200, 255);
+  border: solid 2px rgb(35, 130, 255);
+  color: rgb(35, 130, 255);
+}
+
+.table-container .edit:hover {
+  background-color: rgb(35, 130, 255);
+  border: solid 2px rgb(35, 130, 255);
+  color: rgb(225, 236, 250);
+}
+
+.table-container .delet {
+  background-color: rgb(255, 157, 157);
+  border: solid 2px rgb(255, 35, 35);
+  color: rgb(255, 35, 35);
+}
+
+.table-container .delet:hover {
+  background-color: rgb(255, 35, 35);
+  border: solid 2px rgb(255, 35, 35);
+  color: rgb(253, 209, 209);
+}

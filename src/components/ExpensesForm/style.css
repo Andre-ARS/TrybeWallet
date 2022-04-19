@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.wallet-form-container {
+  align-items: center;
+  background-color: rgb(26, 77, 136);
+  border-bottom: rgb(37, 96, 163) solid 4px;
+  color: white;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+}
+
+.wallet-form {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  width: 80%;
+}
+
+.wallet-form input , select {
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  margin-left: 12px;
+  padding: 8px;
+}
+
+.submit-btn {
+  background-color: rgb(7, 161, 233);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 10px;
+}
+
+.submit-btn:hover {
+  background-color: rgb(56, 186, 247);
+}
