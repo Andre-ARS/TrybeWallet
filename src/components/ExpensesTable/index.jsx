@@ -40,7 +40,7 @@ class ExpensesTable extends Component {
             <td>{ tag }</td>
             <td>{ method }</td>
             <td>{ parseFloat(value).toFixed(2) }</td>
-            <td>{ name }</td>
+            <td>{ name.split() }</td>
             <td>{ parseFloat(ask).toFixed(2) }</td>
             <td>{ (ask * value).toFixed(2) }</td>
             <td>Real</td>

@@ -4,9 +4,8 @@
   margin: auto;
   max-height: 600px;
   overflow-y: scroll;
-  width: 100%;
+  width: 77%;
 }
-
 
 .table-container tr {
   background-color: rgb(217, 235, 238);
